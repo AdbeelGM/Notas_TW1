@@ -20,12 +20,63 @@
     </div>
     <!-- end js-container -->
 
-
-
     <script src="EventDispatcher.js"></script>
     <script src="TaskModel.js"></script>
     <script src="TaskView.js"></script>
     <script src="TaskController.js"></script>
     <script src="App.js"></script>
+
+    <script>
+        // Ejemplo de cómo podrías utilizar event.isDefaultPrevented():
+        $('.js-add-task-button').on('click', function(event) {
+            event.preventDefault();
+            if (event.isDefaultPrevented()) {
+                console.log("El evento predeterminado fue prevenido.");
+            } else {
+                console.log("El evento predeterminado no fue prevenido.");
+            }
+        });
+
+        // Ejemplo de cómo podrías utilizar event.isImmediatePropagationStopped():
+        $('.js-add-task-button').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (event.isImmediatePropagationStopped()) {
+                console.log("La propagación inmediata del evento fue detenida.");
+            } else {
+                console.log("La propagación inmediata del evento no fue detenida.");
+            }
+        });
+
+        // Ejemplo de cómo podrías utilizar event.isPropagationStopped():
+        $('.js-add-task-button').on('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            if (event.isPropagationStopped()) {
+                console.log("La propagación del evento fue detenida.");
+            } else {
+                console.log("La propagación del evento no fue detenida.");
+            }
+        });
+
+        // Ejemplo de cómo podrías acceder a event.namespace:
+        $('.js-add-task-button').on('click.customNamespace', function(event) {
+            console.log("Namespace del evento: " + event.namespace);
+        });
+
+        // Ejemplo de cómo podrías acceder a event.pageX y event.pageY:
+        $(document).on('mousemove', function(event) {
+            console.log("Posición X del mouse: " + event.pageX);
+            console.log("Posición Y del mouse: " + event.pageY);
+        });
+
+        // Ejemplo de cómo podrías utilizar event.preventDefault():
+        $('.js-task-textbox').on('keydown', function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                console.log("La tecla Enter fue presionada, pero el evento predeterminado fue prevenido.");
+            }
+        });
+    </script>
 </body>
 </html>
